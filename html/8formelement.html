@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- ÇOKOMELLİ -->
+    <form action="create/blog" method="get" enctype="text/plain">
+        <!-- action yazmazsak metot hangi urlden yani roottan gelmişse oraya post edilir -->
+        <!-- method'u boş bırakırsan get ile gönderir-->
+        <!-- enctype default text/plaindir. -->
+
+        <table>
+            <tr>
+                <td><label for="namesurname">Adı ve Soyadı</label></td>
+                <!-- for ÖNEMLİ. for ile inputun id'si aynı olmalı. böylece label'a tıklandığında text input'una giriş yapacaktır. -->
+                <td><input type="text" id="" name="adsoyad" placeholder="Örn. Tuğçe Kepen"></td>
+                <!--name ÖNEMLİ. backend'de erişme yaparken name kullanılacak. bilmek önemli-->
+            </tr>
+
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" placeholder="Örn. tugcekepen@hotmail.com"></td>
+            </tr>
+
+            <tr>
+                <td><label for="password">Şifre</label></td>
+                <td><input type="password" id="password" name="sifre"></td>
+            </tr>
+
+            <tr>
+                <td><label for="birthdaydate">Doğum Tarihi</label></td>
+                <td><input type="date" id="birthdaydate" name="dogumgunu"></td>
+            </tr>
+
+            <tr>
+                <td><label for="gender">Cinsiyet</label></td>
+                <td>
+                    Kız<input type="radio" id="gender" name="cinsiyet" value="Kız" checked>
+                    Erkek<input type="radio" id="gender" name="cinsiyet" value="Erkek">
+                    <!--radio'da name'ler aynı verilmeli-->
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="hobbies">Hobiler</label></td>
+                <td>
+                    Boyama<input type="checkbox" id="hobbies" name="hb[]" value="boyama">
+                    Resim Yapma<input type="checkbox" id="hobbies" name="hb[]" value="resim yapma">
+                    Müzik Dinleme<input type="checkbox" id="hobbies" name="hb[]" value="muzik dinleme">
+                    Yemek Yapma<input type="checkbox" id="hobbies" name="hb[]" value="yemek yapma">
+                    Kodlama<input type="checkbox" id="hobbies" name="hb[]" value="kodlama">
+                    <!--radio'da name'ler aynı verilmeli-->
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Gönder"></td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+    </form>
+</body>
+
+</html>

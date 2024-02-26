@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        li {
+            background-color: chocolate;
+            list-style-type: none;
+            margin: 0px 0px 2px 0px
+                /* saat yönünde */
+                /*margin-bottom: 2px*/
+        }
+
+        a {
+            /*body içerisinde a linklerine zaten stil tanımladığım a elementleri burada tekrar verilen aynı özellikten etkilenmeyecek*/
+            background-color: black;
+            display: block; /*renklenen alanın tüm liste elemanı kadar olması için a etiketini block elemente dönüştürdük*/
+            text-decoration: none; /*alt çizgiyi kaldırdık*/
+        }
+
+        a:hover {
+            background-color: burlywood;
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- inline eklenen elementler yan yana sıralanır
+    kapladığı alan sadece içindeki elementlerin kapladığı alandır
+    block elementler ise alt alta sıralanır
+    kapladığı alan sayfanın tamamında satır olacak şekilde genişler
+
+    div elementi block, span elementi inline elementtir -->
+
+    <h1 style="background-color: aqua;">Block Element</h1> <!-- h1 elementi block elementtir -->
+    <h1 style="background-color: aqua; display: inline;">Block Element</h1> <!-- inline elemente dönüştürdük -->
+
+    <br><br>
+
+    <a href="#" style="background-color: yellow;">Inline Element</a> <!-- a elementi inline elementtir -->
+    <a href="#" style="background-color: yellow; display: block;">Inline Element</a> <!-- block elemente dönüştürdük -->
+
+    <br>
+
+    <div style="width: 400px;">
+        <ul type=""> <!--type değiştirmek çalışmadığı için style tag'i içerisinde css ile değiştirdik -->
+            <li><a href="#">List Item 1</a></li>
+            <li><a href="#">List Item 2</a></li>
+            <li><a href="#">List Item 3</a></li>
+        </ul>
+    </div>
+
+    <!-- margin'in anlamı: elementin dışındaki boşluk. arkaplan rengi uzamaz etkilenmez. elementler birbirinden uzaklaşsın istersek kullanılırız.
+    padding'in anlamı: elementin içindeki boşluk. arkaplan rengi uzar, alanı değişir. -->
+</body>
+
+</html>
