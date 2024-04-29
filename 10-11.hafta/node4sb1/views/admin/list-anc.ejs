@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <%- include('../partials/sidebar') %>
+                <!-- Page content wrapper-->
+                <div id="page-content-wrapper">
+                    <!-- Top navigation-->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                        <div class="container-fluid">
+                            <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation"><span
+                                    class="navbar-toggler-icon"></span></button>
+                            <%- include('../partials/navbar') %>
+                        </div>
+                    </nav>
+                    <!-- Page content-->
+                    <div class="container-fluid">
+                        <% if (typeof(contentTitle)!="undefined" ) { %>
+                            <h1 class="mt-4">
+                                <%=contentTitle%>
+                            </h1>
+                            <% } %>
+
+                                <p>The starting state of the menu will appear collapsed on smaller screens, and will
+                                    appear non-collapsed on larger screens. When toggled using the button below, the
+                                    menu will change.</p>
+                                <p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Notice</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Explain</th>
+                                            <th scope="col">isActive</th>
+                                            <th scope="col" class="text-end">Processing</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.forEach((element,index)=> { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%=index+1 %>
+                                                </th>
+                                                <td><%=element.noticeid %></td>
+                                                <td><%=element.title %></td>
+                                                <td><%=element.explain %></td>
+                                                <td><input type="checkbox" disabled <%=element.isActive?"checked":null%>></td>
+                                                <td class="text-end text-nowrap">
+                                                    <a href="/admin/edit/anc/<%=element.noticeid %>"
+                                                        class="btn btn-primary">Edit</a>
+                                                    <a href="/admin/delete/anc/<%=element.noticeid %>"
+                                                        class="delete-btn btn btn-danger"
+                                                        data-id="<%= element.noticeid %>"
+                                                        data-title="<%= element.title %>"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+
+                                    </tbody>
+                                </table>
+
+                                </p>
+                    </div>
+                </div>
+        </div>
+
+        <%- include('../partials/script') %>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        <form action="/admin/delete/anc" method="post">     
+                            <div class="modal-body">
+                                <p class="fw-bold">Anouncemnet ID: <label id="id" class="fw-bold"></label></p>
+                                <p class="fw-bold">Anouncemnet Title: <label id="title" class="fw-bold"></label></p>
+                                <p class="fw-bold">Kaydı silmek istediğinize emin misiniz?</p>
+                                <input type="hidden" id="ancid" name="ancid" value=""> <!-- formdan gelen veriye backendde erişebilmem için "name" önemli -->
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" id="yes" class="btn btn-danger">Linkli Evet</a>
+                                <button type="submit" class="btn btn-danger">Post Evet</button> <!-- daha güvenli -->
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jquery -->
+        <script>
+            $(function () {
+             $(".delete-btn").click(function (){//listedeki click botununa tıklandığında çalışacak jquery kodları
+               let id = $(this).data('id'); //delete butonu üzerinden data-id ve data-title attribute'leri ile bilgiler çekiliyor. 
+               let title = $(this).data('title');
+               $(".modal-body #id").text(id); //modalbox üzerindeki id id'li label'ın text'i set ediliyor
+               $(".modal-body #title").text(title); //modalbox üzerindeki title id'li label'ın text'i set ediliyor
+               $(".modal-footer #yes").attr("href","/admin/delete/anc/"+id); //Linkli Evet butonunun href attribute'i set ediliyor
+               $(".modal-body #ancid").attr("value",id); //hidden input'un value değeri anouncemnet id'ye set ediliyor.
+             })
+            });
+        </script>
+
+    </body>
+
+</html>
